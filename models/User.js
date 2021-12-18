@@ -51,7 +51,13 @@ const userSchema = new mogoose.Schema(
         // encryptPassword
         this.hashed_password = bcrypt.hashSync(password,10);
     })
-   userSchema.method= {
+    userSchema
+    .virtual('fullname')
+    .get(function() {
+        // encryptPassword
+       return `${this.firstname} ${this.lastname}`
+    })
+   userSchema.methods= {
        authenticate:function(password){
            return bcrypt.compareSync(password, this.hashed_password)
        }

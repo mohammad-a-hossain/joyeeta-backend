@@ -5,7 +5,7 @@
  const bodyParser = require('body-parser')
 
 //routes
-const userRoutes =require('./routes/user')
+const userRoutes =require('./routes/admin/user')
 
 
 const app = express()

@@ -5,7 +5,8 @@
  const bodyParser = require('body-parser')
 
 //routes
-const userRoutes =require('./routes/admin/user')
+const userRoutes =require('./routes/userRoutes')
+const adminRoutes =require('./routes/admin/authRoutes')
 
 
 const app = express()
@@ -25,6 +26,7 @@ mongoose.connect(process.env.DATABASE_LOCAL,{
 app.use(express.json())
 //app.use(bodyParser())
 app.use('/api',userRoutes)
+app.use('/api',adminRoutes)
 
 
 app.listen(process.env.PORT,()=>{

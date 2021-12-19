@@ -7,12 +7,17 @@ exports.signup =(req,res)=>{
         .exec((error, user)=>{//console.log(error)
             if(user)
             return res.status(400).json({
-             message:'user already exist'
+             message:'admin already exist'
             })
      
             const {firstname,lastname,email,password}= req.body 
             const _user = new User({
-                firstname,lastname,email,password,username:Math.random().toString()
+                firstname,
+                lastname,
+                email,
+                password,
+                username:Math.random().toString(),
+                role:"admin"
             })
             _user.save((error,data)=>{
                 if(error){console.log(error)
@@ -56,7 +61,7 @@ exports.signin = (req, res) => {
       if (error) return res.status(400).json({ error });
       if (user) {
          //const isPassword = await user.authenticate(req.body.password);
-       if( user.authenticate(req.body.password)) {
+       if( user.authenticate(req.body.password) && user.role==="admin") {
           const token = jwt.sign(
             { _id: user._id },
             process.env.JWT_SECRET,
@@ -78,11 +83,11 @@ exports.signin = (req, res) => {
       }
     })
   }
-exports.requireSingin =(req,res,next)=>{
-    const token = req.headers.authorization.split(" ")[1];
+// exports.requireSingin =(req,res,next)=>{
+//     const token = req.headers.authorization.split(" ")[1];
     
-    console.log(token)
-    const user= jwt.verify(token, process.env.JWT_SECRET)
-    req.user = user
-    next()
-}
+//     console.log(token)
+//     const user= jwt.verify(token, process.env.JWT_SECRET)
+//     req.user = user
+//     next()
+// }

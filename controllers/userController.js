@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 exports.signup =(req,res)=>{
 
         User.findOne({email:req.body.email})
-        .exec((error, user)=>{//console.log(error)
+        .exec((error, user)=>{console.log(error)
             if(user)
             return res.status(400).json({
              message:'user already exist'
@@ -66,11 +66,4 @@ exports.signin = (req, res) => {
       }
     })
   }
-// exports.requireSingin =(req,res,next)=>{
-//     const token = req.headers.authorization.split(" ")[1];
-    
-//     console.log(token)
-//     const user= jwt.verify(token, process.env.JWT_SECRET)
-//     req.user = user
-//     next()
-// }
+ 

@@ -6,3 +6,5 @@
 * middleweare - express.json()
 - yarn add body-parser
 - yarn add bcrypt (use in model for password)
+## after user admim login validation
+- now insert or create category and sub category 

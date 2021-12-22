@@ -12,7 +12,7 @@ const categorySchema = new mongoose.Schema({
         trim:true,
         unique:true
     },
-    parentId: {
+    parentId:{
         type: String,
       },
 },{ timestamps: true })

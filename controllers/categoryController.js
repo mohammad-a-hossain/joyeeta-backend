@@ -7,9 +7,11 @@ exports.addCategory =(req,res)=>{
         name:req.body.name,
         slug:slugify(req.body.name)
     }
-    if(req.body.parentId) {
-        categoryObj.parentId == req.body.parentId
-    }
+   
+    if(req.body.parentId){
+        categoryObj.parentId = req.body.parentId;
+      }
+
     const cate = new Category(categoryObj)
     cate.save((error, category)=>{
         if(error) return res.status(400).json({error})

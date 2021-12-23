@@ -10,3 +10,4 @@
 - now insert or create category and sub category 
 - then insert product 
 - in product image file upload    processing and use multer where multer is installed and file name unique ID also installed SHORTID
+

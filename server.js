@@ -9,6 +9,7 @@ const userRoutes =require('./routes/userRoutes')
 const adminRoutes =require('./routes/admin/authRoutes')
 const categoryRoutes = require('./routes/CategoryRoute')
 const productRoutes = require('./routes/ProductRoute')
+const cartRoute = require('./routes/cartRoute')
 
 
 const app = express()
@@ -31,6 +32,7 @@ app.use('/api',userRoutes)
 app.use('/api',adminRoutes)
 app.use('/api',categoryRoutes)
 app.use('/api',productRoutes)
+app.use('/api',cartRoute)
 
 
 app.listen(process.env.PORT,()=>{

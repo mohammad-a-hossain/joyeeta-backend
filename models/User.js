@@ -45,21 +45,23 @@ const userSchema = new mogoose.Schema(
     },
     { timestamps: true })
 
-    // userSchema
-    // .virtual('password')
-    // .set(function(password) {
-    //     // encryptPassword
-    //     this.hashed_password = bcrypt.hashSync(password,10);
-    // })
+    userSchema
+    .virtual('password')
+    .set(function(password) {
+        // encryptPassword
+        this.hashed_password = bcrypt.hashSync(password,10);
+    })
     userSchema
     .virtual('fullname')
     .get(function() {
         // encryptPassword
        return `${this.firstname} ${this.lastname}`
     })
-   userSchema.methods= {
-       authenticate:function(password){
-           return bcrypt.compareSync(password, this.hashed_password)
-       }
-   }
+
+userSchema.methods = {
+    authenticate: async function (password) {
+      return await bcrypt.compare(password, this.hash_password);
+    },
+  };
+
     module.exports = mogoose.model('User',userSchema)

@@ -11,3 +11,5 @@
 - then insert product 
 - in product image file upload    processing and use multer where multer is installed and file name unique ID also installed SHORTID
 
+*** after add category section then go to manager part for setup REDUX ***
+

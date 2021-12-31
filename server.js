@@ -3,6 +3,7 @@
  require('dotenv').config();
  const mongoose = require('mongoose')
  const path = require('path')
+ const cors = require('cors')
 
 
 //routes
@@ -28,6 +29,7 @@ mongoose.connect(process.env.DATABASE_LOCAL,{
 
 
 app.use(express.json())
+app.use(cors())
 app.use('/public',express.static(path.join(__dirname,'uploadsCategories')))
 app.use('/api',userRoutes)
 app.use('/api',adminRoutes)

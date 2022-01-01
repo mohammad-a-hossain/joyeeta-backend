@@ -59,8 +59,8 @@ const userSchema = new mogoose.Schema(
     })
 
 userSchema.methods = {
-    authenticate: async function (password) {
-      return await bcrypt.compare(password, this.hash_password);
+    authenticate:  function (password) {
+      return bcrypt.compare(password, this.hash_password);
     },
   };
 

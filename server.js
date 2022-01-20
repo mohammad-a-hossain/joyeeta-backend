@@ -11,6 +11,7 @@ const userRoutes =require('./routes/userRoutes')
 const adminRoutes =require('./routes/admin/authRoutes')
 const categoryRoutes = require('./routes/CategoryRoute')
 const productRoutes = require('./routes/ProductRoute')
+const getAllProductDataRoute = require('./routes/admin/getAllProductData')
 const cartRoute = require('./routes/cartRoute')
 
 
@@ -35,6 +36,7 @@ app.use('/api',userRoutes)
 app.use('/api',adminRoutes)
 app.use('/api',categoryRoutes)
 app.use('/api',productRoutes)
+app.use('/api',getAllProductDataRoute)
 app.use('/api',cartRoute)
 
 

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+
 const categorySchema = new mongoose.Schema({
     name:{
         type:String,
@@ -11,10 +12,18 @@ const categorySchema = new mongoose.Schema({
         required:true,
         trim:true,
         unique:true
-    },
+    }, 
+    type: {
+        type: String,
+      },
     categoryImage: { type: String },
     parentId:{
         type: String,
+      },
+      createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
       },
 },{ timestamps: true })
 

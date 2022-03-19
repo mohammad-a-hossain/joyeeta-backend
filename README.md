@@ -1,4 +1,5 @@
 # JOYEETA a mern ecommerce project
+- node server(run command)
 - it is all about woman product to display and trade
 *** installation for backend ***
 - express express-validator dotenv nodemon 

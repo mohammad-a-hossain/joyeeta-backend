@@ -17,7 +17,7 @@ const cartRoute = require('./routes/cartRoute')
 
 const app = express()
 
-
+ // here insteade of localhost set 127.0.0.1 for node v-17
 
 mongoose.connect(process.env.DATABASE_LOCAL,{
     useNewUrlParser:true,

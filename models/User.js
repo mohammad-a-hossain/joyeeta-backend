@@ -33,7 +33,7 @@ const userSchema = new mogoose.Schema(
         },
         hashed_password: {
             type: String,
-            required: true
+            
         },
         role: {
             type: String,
@@ -45,12 +45,12 @@ const userSchema = new mogoose.Schema(
     },
     { timestamps: true })
 
-    // userSchema
-    // .virtual('password')
-    // .set(function(password) {
-    //     // encryptPassword
-    //     this.hashed_password = bcrypt.hashSync(password,10);
-    // })
+    userSchema
+    .virtual('password')
+    .set(function(password) {
+        // encryptPassword
+        this.hashed_password = bcrypt.hashSync(password,10);
+    })
     userSchema
     .virtual('fullname')
     .get(function() {

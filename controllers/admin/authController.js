@@ -22,10 +22,11 @@ exports.signup =(req,res)=>{
           username:shortid.generate(),
           role:"admin"
       })
+      //console.log(_user)
       _user.save((error,data)=>{
           if(error){console.log(error)
               return res.status(400).json({
-                  message:'something went wrong'
+                  message:'something went wrong creating admin'
               })
           }
           if(data){
@@ -44,7 +45,7 @@ exports.signin = (req, res) => {
       if (error) return res.status(400).json({ error });
       if (user) {
          //const isPassword = await user.authenticate(req.body.password);
-       if( user.authenticate(req.body.password) && user.role ==="admin") {
+    if( user.authenticate(req.body.password) && user.role ==="admin") {
           const token = jwt.sign(
             { _id: user._id , role:user.role},
             process.env.JWT_SECRET,
@@ -69,6 +70,7 @@ exports.signin = (req, res) => {
   }
 
  exports.signout = (req, res) => {
+   console.log(req)
   res.clearCookie("token");
   res.status(200).json({
     message: "Signout successfully...!",

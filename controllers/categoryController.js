@@ -23,16 +23,14 @@ function createCategories(categories,parentId = null){
 }
 
 
-exports.addCategory =(req,res)=>{
-
-   
-
+exports.addCategory =(req,res)=>{console.log(req.body)
     const categoryObj ={
         name:req.body.name,
         slug:slugify(req.body.name)
     
     }
-
+   
+   
     if(req.file){
         categoryObj.categoryImage = process.env.API + '/public/'+ req.file.filename
     }
@@ -42,8 +40,11 @@ exports.addCategory =(req,res)=>{
       }
 
     const cate = new Category(categoryObj)
+   
     cate.save((error, category)=>{
+       console.log(error)
         if(error) return res.status(400).json({error})
+      
         if(category){
             return res.status(201).json({category})
         }

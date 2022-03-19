@@ -28,7 +28,7 @@ exports.signup =(req,res)=>{
             _user.save((error,data)=>{
                 if(error){console.log(error)
                     return res.status(400).json({
-                        message:'something went wrong'
+                        message:'something went wrong cearting admin'
                     })
                 }
                 if(data){
@@ -62,11 +62,11 @@ exports.signin = (req, res) => {
           })
         } else {
           return res.status(400).json({
-            message: "Something went wrong",
+            message: "Something went wrong singing",
           })
         }
       } else {
-        return res.status(400).json({ message: "Something went wrong" })
+        return res.status(400).json({ message: "Something went wrong 2" })
       }
     })
   }

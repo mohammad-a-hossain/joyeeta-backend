@@ -14,16 +14,16 @@ const categorySchema = new mongoose.Schema({
         unique:true
     }, 
     type: {
-        type: String,
+      type: String,
       },
-    categoryImage: { type: String },
     parentId:{
         type: String,
       },
+     categoryImage: { type: String },
       createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
-        required: true,
+        required:true,
       },
 },{ timestamps: true })
 

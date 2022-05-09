@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "ecommerce mern ",
   "main": "index.js",
-  "start": "nodemon server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
   "author": "m a hossain",
   "license": "MIT",
   "private": true,

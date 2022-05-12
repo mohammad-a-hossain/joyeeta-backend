@@ -1,5 +1,8 @@
 const slugify = require('slugify')
 const Category = require('../models/Category')
+const shortid = require('shortid')
+
+
 
 function createCategories(categories, parentId = null){
     //const categoryList =[]
@@ -47,6 +50,7 @@ function createCategories(categories, parentId = null){
       name: cate.name,
       slug: cate.slug,
       parentId: cate.parentId,
+      type: cate.type,
       children: createCategories(categories, cate._id),
     });
   }
@@ -59,7 +63,7 @@ exports.addCategory =(req,res)=>{
    // console.log(req.body)
     const categoryObj ={
         name:req.body.name,
-        slug:slugify(req.body.name),
+        slug:`${slugify(req.body.name)}-${shortid.generate()}`,
         createdBy: req.user._id
     }
    
@@ -83,6 +87,8 @@ exports.addCategory =(req,res)=>{
         }
     })
 }
+
+
 exports.getCategory =(_req,res)=>{
     Category.find({}).exec((error, categories) => {
         if(error) return res.status(400).json({error})
@@ -101,7 +107,7 @@ exports.updateCategory = async(req,res)=>{
       for(let i=0; i <name.length; i++){
         const category= {
           name:name[i],
-          //type:type[i]
+          type:type[i]
         }
       if(parentId[i] !==''){
         category.parentId = parentId[i]
@@ -125,3 +131,21 @@ exports.updateCategory = async(req,res)=>{
   return res.status(201).json({updatedCategories})
   }
 
+
+
+
+exports.deleteCategory = async(req, res)=>{
+ 
+  const {ids} = req.body.payload
+  const deletedCate = []
+  for( let i=0; i <ids.length; i++){
+     const getDeletedIdOfCates= await Category.findOneAndDelete({_id:ids[i]._id})
+     deletedCate.push(getDeletedIdOfCates)
+  }
+  if(deletedCate.length == ids.length){
+      res.status(201).json({message:'category removed'})
+  }else{
+    res.status(400).json({message:'something wrong!!'})
+  }
+
+}

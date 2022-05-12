@@ -20,7 +20,7 @@ const storage = multer.diskStorage({
 
 
 
-const { addCategory,getCategory, updateCategory } = require('../controllers/categoryController');
+const { addCategory,getCategory, updateCategory, deleteCategory } = require('../controllers/categoryController');
 const{ requireSignin,adminMiddlewear} = require('../Middleweare/requireLogin')
 
 
@@ -30,5 +30,7 @@ router.post('/category/create',requireSignin,adminMiddlewear,upload.single('cate
 router.get('/category/getCategory',getCategory)
 
 router.post('/category/updatecate',upload.array('categoryImage'),updateCategory)
+
+router.post('/category/delete',deleteCategory)
 
 module.exports = router 

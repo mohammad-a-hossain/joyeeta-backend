@@ -13,6 +13,7 @@ const categoryRoutes = require('./routes/CategoryRoute')
 const productRoutes = require('./routes/ProductRoute')
 const getAlltData = require('./routes/admin/allData')
 const cartRoute = require('./routes/cartRoute')
+const PageRoute = require('./routes/PageRoute')
 
 
 
@@ -39,6 +40,7 @@ app.use('/api',categoryRoutes)
 app.use('/api',productRoutes)
 app.use('/api',getAlltData)
 app.use('/api',cartRoute)
+app.use('/api',PageRoute)
 
 
 app.listen(process.env.PORT,()=>{

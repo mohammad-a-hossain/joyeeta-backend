@@ -10,7 +10,6 @@ const storage = multer.diskStorage({
       cb(null, path.join(path.dirname(__dirname),'uploadsProducts'))
     },
     filename: function (req, file, cb) {
-      
       cb(null, shortid.generate() + '-' + file.originalname)
     }
   })
@@ -18,7 +17,7 @@ const storage = multer.diskStorage({
   const upload = multer({storage})
 
 
-const { addProduct,getProductsBySlug } = require('../controllers/productController')
+const { addProduct,getProductsBySlug, getProductDetailById } = require('../controllers/productController')
 
 
 const{ requireSignin,adminMiddlewear} = require('../Middleweare/requireLogin')
@@ -29,6 +28,9 @@ const{ requireSignin,adminMiddlewear} = require('../Middleweare/requireLogin')
 router.post('/product/create',requireSignin,adminMiddlewear,
 /* upload.single('productPics') */ upload.array('productPics'),addProduct)
 router.get('/products/:slug',getProductsBySlug)
+router.get('/product/:productId',getProductDetailById)
+
+
 
 
 module.exports = router 

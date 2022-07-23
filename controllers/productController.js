@@ -22,7 +22,7 @@ exports.addProduct =(req,res)=>{
 
      if(req.files.length > 0){
          productPics =req.files.map(file => {
-             return {img:file.filename}
+             return {img:file.location}
          })
      }
 
@@ -118,14 +118,24 @@ exports.addProduct =(req,res)=>{
                 }) 
                 }else{
                     return res.status(200).json({products})
-                }
-               
-               
-
-               
+                }         
             })
         }
          
      })
         
     } 
+    exports.getProductDetailById= (req,res)=>{
+        const {productId}= req.params 
+        if(productId){
+            Product.findOne({_id:productId})
+            .exec((error,product)=>{
+                if(error) return res.status(400).json({error})
+                if(product){
+                    res.status(200).json({product})
+                } 
+            })
+        }else{
+            return res.status(400).json({error:'params required'})
+        }
+    }
